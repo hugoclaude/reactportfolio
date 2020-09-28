@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default class NavigationComponent extends Component {
     constructor() {
@@ -8,11 +9,14 @@ export default class NavigationComponent extends Component {
     render() {
         return (
             <div>
-                <button>Home</button>
-                <button>About</button>
+            <NavLink exact to="/">Home</NavLink>
+            <NavLink to="/">About</NavLink>
+
+            <a href="/">Wrong  Home</a>
+
                 <button>Contact</button>
                 <button>Blog</button>
-                <button>Add Blog</button>
+                {true ? <button>Add Blog</button> : null}
             </div>
         );
     }
