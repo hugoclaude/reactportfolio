@@ -12,15 +12,15 @@ export default class App extends Component {
             pageTitle: "Welcome to my portfolio",
             isLoading: false,
             data: [
-                { title: "Quip", category: "eCommerce", slug: 'quip' },
-                { title: "Eventbrite", category: "Scheduling", slug: 'eventbrite' },
-                { title: "Ministry Safe", category: "Enterprise", slug: 'ministry-safe' },
-                { title: "SwingAway", category: "eCommerce", slug: 'swingaway' }
+                // { title: "Quip", category: "eCommerce", slug: 'quip' },
+                // { title: "Eventbrite", category: "Scheduling", slug: 'eventbrite' },
+                // { title: "Ministry Safe", category: "Enterprise", slug: 'ministry-safe' },
+                // { title: "SwingAway", category: "eCommerce", slug: 'swingaway' }
             ]
         };
 
         this.handleFilter = this.handleFilter.bind(this);
-        this.getPortfolioItems = this.getPortfolioItems.bind(this);
+        // this.getPortfolioItems = this.getPortfolioItems.bind(this);
     }
   
     handleFilter(filter) {
@@ -54,12 +54,17 @@ export default class App extends Component {
         return (
             <PortfolioItem
             key={item.id}
-            title={item.name}
-            url={item.url}
-            slug={item.id}
+            // title={item.name}
+            // url={item.url}
+            // slug={item.id}
+            item={item}
           />
         );
       });
+    }
+
+    componentDidMount() {
+        this.getPortfolioItems();
     }
   
     render() {
@@ -67,7 +72,7 @@ export default class App extends Component {
         return <div>Loading...</div>;
       }
 
-      this.getPortfolioItems();
+    //   this.getPortfolioItems();
   
       return (
         <div>
@@ -82,8 +87,10 @@ export default class App extends Component {
           <button onClick={() => this.handleFilter("Enterprise")}>
             Enterprise
           </button>
-  
+        
+        <div className="portfolio-items-wrapper">
           {this.portfolioItems()}
+          </div>
         </div>
       );
     }

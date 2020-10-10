@@ -1,13 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function(props) {
-    return (
-        <div>
-            <h3>{props.title}</h3>
-            <h4>{props.url}</h4>
+  const { id, description, thumb_image_url, logo } = props.item;
+  console.log(props)
+  return (
+    <div className="portfolio-item-wrapper">
+      <div
+        className="portfolio-img-background"
+        style={{
+          backgroundImage: "url(" + thumb_image_url + ")"
+        }}
+      />
 
-            <Link to={`/portfolio/${props.slug}`}>Link</Link>
-        </div>
-    );
+      <img src={thumb_image_url} />
+      <img src={logo} />
+      <div>{description}</div>
+      <Link to={`/portfolio/${id}`}>Link</Link>
+    </div>
+  );
 }
