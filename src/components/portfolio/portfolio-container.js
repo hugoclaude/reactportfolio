@@ -72,26 +72,20 @@ export default class App extends Component {
         return <div>Loading...</div>;
       }
 
-    //   this.getPortfolioItems();
-  
-      return (
-        <div>
-          <h2>{this.state.pageTitle}</h2>
-  
-          <button onClick={() => this.handleFilter("eCommerce")}>
-            eCommerce
-          </button>
-          <button onClick={() => this.handleFilter("Scheduling")}>
-            Scheduling
-          </button>
-          <button onClick={() => this.handleFilter("Enterprise")}>
-            Enterprise
-          </button>
-        
+      return (        
         <div className="portfolio-items-wrapper">
-          {this.portfolioItems()}
-          </div>
-        </div>
+          <button className="btn" onClick={() => this.handleFilter("eCommerce")}>
+              eCommerce
+            </button>
+            <button className="btn" onClick={() => this.handleFilter("Scheduling")}>
+              Scheduling
+            </button>
+            <button className="btn" onClick={() => this.handleFilter("Enterprise")}>
+              Enterprise
+            </button>
+
+            {this.portfolioItems()}
+        </div>  
       );
     }
   }
