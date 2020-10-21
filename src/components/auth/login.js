@@ -37,6 +37,7 @@ export default class Login extends Component {
       .then(response => {
         if (response.data.status === "created") {
           console.log("You can come in...");
+          console.log("testing testing")
           this.props.handleSuccessfulAuth();
         } else {
           this.setState({
