@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from 'axios';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FortAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 import NavigationContainer from "./navigation/navigation-container";
 import Home from "./pages/home";
