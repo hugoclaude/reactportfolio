@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+  
+import React from "react";
+import { Link } from "react-router-dom";
 
 const BlogItem = props => {
   const {
@@ -17,7 +18,7 @@ const BlogItem = props => {
       </Link>
       <div>{content}</div>
     </div>
-  )
-}
+  );
+};
 
 export default BlogItem;
