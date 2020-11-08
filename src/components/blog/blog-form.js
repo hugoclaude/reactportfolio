@@ -1,12 +1,14 @@
 import React from 'react';
 
-export default class  extends Component {
+export default class BlogForm extends Component {
   render() {
     return (
-      <div>
+      <form>
+      <input type="text" />
+      <input type="text" />
 
-      </div>
+      <button>Save</button>
+      </form>
     );
   }
 }
-

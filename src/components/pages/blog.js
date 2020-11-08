@@ -5,8 +5,6 @@ import axios from "axios";
 import BlogItem from "../blog/blog-item";
 import BlogModal from "../modals/blog-modal";
 
-log
-
 class Blog extends Component {
   constructor() {
     super();
