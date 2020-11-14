@@ -9,7 +9,7 @@ export default class RichTextEditor extends Component {
     super(props);
 
     this.state = {
-      editorState: EditorState.createEmpty(),
+      editorState: EditorState.createEmpty()
     };
 
     this.onEditorStateChange = this.onEditorStateChange.bind(this);
