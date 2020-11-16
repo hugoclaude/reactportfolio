@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ReactHtmlParser from "react-html-parser";
+
+import BlogFeaturedImage from "../blog/blog-featured-image";
 
 export default class BlogDetail extends Component {
   constructor(props) {
@@ -7,22 +10,21 @@ export default class BlogDetail extends Component {
 
     this.state = {
       currentId: this.props.match.params.slug,
-      blogItem: {}
+      blogItem: {},
     };
   }
 
   getBlogItem() {
     axios
       .get(
-        `https://allisdust.devcamp.space/portfolio/portfolio_blogs/${this.state
-          .currentId}`
+        `https://allisdust.devcamp.space/portfolio/portfolio_blogs/${this.state.currentId}`
       )
-      .then(response => {
+      .then((response) => {
         this.setState({
-          blogItem: response.data.portfolio_blog
+          blogItem: response.data.portfolio_blog,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("getBlogItem error", error);
       });
   }
@@ -36,7 +38,7 @@ export default class BlogDetail extends Component {
       title,
       content,
       featured_image_url,
-      blog_status
+      blog_status,
     } = this.state.blogItem;
 
     return (
@@ -44,11 +46,9 @@ export default class BlogDetail extends Component {
         <div className="content-container">
           <h1>{title}</h1>
 
-          <div className="featured-image-wrapper">
-           <img src={featured_image_url} />
-          </div>
+          <BlogFeaturedImage img={featured_image_url} />
 
-          <div className="content">{content}</div>
+          <div className="content">{ReactHtmlParser(content)}</div>
         </div>
       </div>
     );
