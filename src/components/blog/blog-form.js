@@ -9,10 +9,11 @@ export default class BlogForm extends Component {
     super(props);
 
     this.state = {
+      id: "",
       title: "",
       blog_status: "",
       content: "",
-      featured_image: ""
+      featured_image: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,24 +29,34 @@ export default class BlogForm extends Component {
     this.featuredImageRef = React.createRef();
   }
 
+  componentWillMount() {
+    if (this.props.editMode) {
+      this.setState({
+        id: this.props.blog.id,
+        title: this.props.blog.title,
+        status: this.props.blog.status,
+      });
+    }
+  }
+
   componentConfig() {
     return {
       iconFiletypes: [".jpg", ".png"],
       showFiletypeIcon: true,
-      postUrl: "https://httpbin.org/post"
+      postUrl: "https://httpbin.org/post",
     };
   }
 
   djsConfig() {
     return {
       addRemoveLinks: true,
-      maxFiles: 1
+      maxFiles: 1,
     };
   }
 
   handleFeaturedImageDrop() {
     return {
-      addedfile: file => this.setState({ featured_image: file })
+      addedfile: (file) => this.setState({ featured_image: file }),
     };
   }
 
@@ -77,7 +88,7 @@ export default class BlogForm extends Component {
         this.buildForm(),
         { withCredentials: true }
       )
-      .then(response => {
+      .then((response) => {
         if (this.state.featured_image) {
           this.featuredImageRef.current.dropzone.removeAllFiles();
         }
@@ -86,14 +97,14 @@ export default class BlogForm extends Component {
           title: "",
           blog_status: "",
           content: "",
-          featured_image: ""
+          featured_image: "",
         });
 
         this.props.handleSuccessfullFormSubmission(
           response.data.portfolio_blog
         );
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("handleSubmit for blog error", error);
       });
 
@@ -102,7 +113,7 @@ export default class BlogForm extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 

@@ -9,10 +9,12 @@ export default class RichTextEditor extends Component {
     super(props);
 
     this.state = {
-      editorState: EditorState.createEmpty()
+      editorState: EditorState.createEmpty(),
     };
 
     this.onEditorStateChange = this.onEditorStateChange.bind(this);
+    this.getBase64 = this.getBase64.bind(this);
+    this.uploadFile = this.uploadFile.bind(this);
   }
 
   onEditorStateChange(editorState) {
@@ -24,8 +26,17 @@ export default class RichTextEditor extends Component {
     );
   }
 
+  getBase64(file, callback) {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => callback(reader.result);
+    reader.onerror = (error) => {};
+  }
+
   uploadFile(file) {
-  console.log("upload file", file);
+    return new Promise((resolve, reject) => {
+      this.getBase64(file, (data) => resolve({ data: { link: data } }));
+    });
   }
 
   render() {
@@ -46,8 +57,8 @@ export default class RichTextEditor extends Component {
               uploadCallback: this.uploadFile,
               alt: { present: true, mandatory: false },
               previewImage: true,
-              inputAccept: "image/gif,image/jpeg,image/jpg,image/png,image/svg"
-            }
+              inputAccept: "image/gif,image/jpeg,image/jpg,image/png,image/svg",
+            },
           }}
         />
       </div>
